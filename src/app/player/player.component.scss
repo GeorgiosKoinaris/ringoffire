@@ -4,15 +4,19 @@
     align-items: center;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
-    background-color: rgba(255, 165, 0, 0.8);
+    background-color: rgba(100, 100, 100, 0.8);
     span {
         font-size: 32px;
         margin-left: 14px;
     }
     img {
-        height: 100px;
-        width: 100px;
+        height: 60px;
+        width: 60px;
         object-fit: cover;
         border-radius: 100px;
     }
+}
+
+.player-active {
+    background-color: orange !important;
 }
