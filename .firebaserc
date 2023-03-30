@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "gkringoffire": {
+      "hosting": {
+        "ringoffire": [
+          "gkringoffire"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "gkringoffire"
+  }
+}
