@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { collection, collectionData, docData, Firestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { getFirestore, doc, updateDoc } from "firebase/firestore";
+import { EditPlayerComponent } from '../edit-player/edit-player.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class GameComponent implements OnInit {
   games$: Observable<any[]>;
   firestore: Firestore = inject(Firestore);
   gameId: string;
+  gameOver = false;
 
   constructor(private route: ActivatedRoute, public dialog: MatDialog) {
     const itemCollection = collection(this.firestore, 'games');
@@ -45,6 +47,7 @@ export class GameComponent implements OnInit {
       this.game.currentPlayer = game.currentPlayer;
       this.game.playedCards = game.playedCards;
       this.game.players = game.players;
+      this.game.player_images = game.player_images;
       this.game.stack = game.stack;
       this.game.pickCardAnimation = game.pickCardAnimation;
       this.game.currentCard = game.currentCard;
@@ -56,7 +59,10 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    if (!this.game.pickCardAnimation) {
+    if (this.game.stack.length == 0) {
+      this.gameOver = true;
+    }
+    else if (!this.game.pickCardAnimation) {
       this.game.currentCard = this.game.stack.pop();
       this.game.pickCardAnimation = true;
 
@@ -72,12 +78,31 @@ export class GameComponent implements OnInit {
     }
   }
 
+  editPlayer(playerId: number) {
+    console.log('Edit Player', playerId);
+    const dialogRef = this.dialog.open(EditPlayerComponent);
+
+    dialogRef.afterClosed().subscribe((change: string) => {
+      console.log('Received change', change);
+      if (change) {
+        if (change == 'DELETE') {
+          this.game.player_images.splice(playerId, 1);
+          this.game.players.splice(playerId, 1);
+        } else {
+          this.game.player_images[playerId] = change;
+          this.saveGame();
+        }
+      }
+    });
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe((name: string) => {
       if (name && name.length > 0) {
         this.game.players.push(name);
+        this.game.player_images.push('1.png');
         this.saveGame();
       }
     });
@@ -90,8 +115,5 @@ export class GameComponent implements OnInit {
     updateDoc(docRef, this.game.toJson()).then((res) => {
       console.log('Speichern erfolgreich! ', res);
     });
-    // const gameRef: any = doc(this.firestore, 'games', this.gameId);
-
-    // gameRef.update(this.game.toJson());
   }
 }

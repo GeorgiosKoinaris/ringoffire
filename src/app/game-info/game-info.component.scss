@@ -5,3 +5,9 @@
 .mat-mdc-card {
     background-color: rgba($color: white, $alpha: 0.8);
 }
+
+mat-card {
+    @media (max-width: 720px) {
+        min-height: 120px;
+    }
+}
