@@ -1,113 +1,113 @@
 .field {
-    width: 100vw;
-    height: 100vh;
-    max-width: 100%;
-    background-image: url('/assets/img/board.jpg');
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  background-image: url("/assets/img/board.jpg");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-stack {
-    position: relative;
-    img {
-        position: absolute;
-        width: 120px;
-    }
+  position: relative;
+  img {
+    position: absolute;
+    width: 120px;
+  }
 }
 
 .played-card {
-    right: 25px;
-    transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
+  right: 25px;
+  transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
 }
 
 .top-card {
-    cursor: pointer;
-    transition: all 125ms ease-in-out;
-    &:hover {
-        transform: scale(1.1) translateY(-10px);
-    }
+  cursor: pointer;
+  transition: all 125ms ease-in-out;
+  &:hover {
+    transform: scale(1.1) translateY(-10px);
+  }
 }
 
 .pick-card {
-    transition: all 125ms ease-in-out;
-    animation: pick-card-animation 1s ease-in-out;
-    transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
+  transition: all 125ms ease-in-out;
+  animation: pick-card-animation 1s ease-in-out;
+  transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10deg);
 }
 
 @keyframes pick-card-animation {
-    0% {
-        transform: scale(1);
-    }
-    40% {
-        transform: scale(1.7);
-    }
-    60% {
-        transform: scale(1.7);
-    }
-    100% {
-        transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10dg);
-    }
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.7);
+  }
+  60% {
+    transform: scale(1.7);
+  }
+  100% {
+    transform: scale(1.3) translateX(140px) translateY(-180px) rotate(-10dg);
+  }
 }
 
 .player-position {
-    position: absolute;
-    right: 0;
-    z-index: 1;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 }
 
 .btn-add {
-    position: absolute;
-    right: 32px;
-    bottom: 32px;
+  position: absolute;
+  right: 32px;
+  bottom: 32px;
 }
 
 .pin-bottom {
-    position: absolute;
-    bottom: 32px;
-    left: 100px;
-    right: 100px;
-    @media (max-width: 720px) {
-        left: 0;
-        right: 0;
-        bottom: 0;
-    }
+  position: absolute;
+  bottom: 32px;
+  left: 100px;
+  right: 100px;
+  @media (max-width: 720px) {
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
 
 .scroll-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    overflow-x: auto;
-    overflow-y: hidden;
-    app-player-mobile {
-        margin-left: 8px;
-    }
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  app-player-mobile {
+    margin-left: 8px;
+  }
 }
 
 app-player,
 app-player-mobile {
-    cursor: pointer;
-    &:hover {
-        filter: brightness(1.15);
-    }
+  cursor: pointer;
+  &:hover {
+    filter: brightness(1.15);
+  }
 }
 
 .gameOver {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    img {
-        width: 400px;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 400px;
+  }
 }
 
 .preloadImage {
-    opacity: 0;
-    z-index: -9999;
-    height: 0;
-    width: 0;
+  opacity: 0;
+  z-index: -9999;
+  height: 0;
+  width: 0;
 }
